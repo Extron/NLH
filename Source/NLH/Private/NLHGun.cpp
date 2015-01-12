@@ -25,3 +25,8 @@ bool ANLHGun::HasClips()
 	return ClipCount > 0;
 }
 
+FRotator ANLHGun::GetAimDirection()
+{
+	return FRotator();
+}
+

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GCBase.h"
+#include "NLHGun.h"
 #include "GCProjectileBase.generated.h"
 
 /**

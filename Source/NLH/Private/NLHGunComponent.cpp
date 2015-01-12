@@ -1,8 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "NLH.h"
+#include "NLHGun.h"
 #include "NLHGunComponent.h"
 
+
+ANLHGunComponent::ANLHGunComponent(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	MeshComponent = ObjectInitializer.CreateDefaultSubobject<USkeletalMeshComponent>(this, "MeshComponent");
+	RootComponent = MeshComponent;
+}
 
 ANLHGunComponent* ANLHGunComponent::GetRoot()
 {

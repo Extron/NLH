@@ -3,6 +3,7 @@
 #pragma once
 
 #include "NLHGunComponent.h"
+#include "NLHGun.h"
 #include "GCClip.generated.h"
 
 /**

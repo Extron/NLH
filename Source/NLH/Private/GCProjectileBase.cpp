@@ -15,7 +15,11 @@ void AGCProjectileBase::SpawnProjectile(FRotator rotation)
 	if (!world)
 		return;
 
-	world->SpawnActor<ANLHProjectile>(FindProjectile(), FindMuzzlePoint(), rotation);
+	FVector muzzleLoc = FVector();
+	TSubclassOf<ANLHProjectile> projType = ANLHProjectile::StaticClass();
+
+	if (FindProjectile(projType) && FindMuzzlePoint(muzzleLoc))
+		world->SpawnActor<ANLHProjectile>(projType, muzzleLoc, rotation);
 }
 
 

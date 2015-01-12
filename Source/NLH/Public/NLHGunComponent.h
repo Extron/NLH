@@ -5,9 +5,9 @@
 #include "GameFramework/Actor.h"
 #include "NLHProjectile.h"
 #include "NLHDamageType.h"
-#include "NLHGun.h"
 #include "NLHGunComponent.generated.h"
 
+class ANLHGun;
 
 UENUM(BlueprintType)
 enum class EGunComponentType : uint8
@@ -47,45 +47,51 @@ public:
 	/**
 	* A list of gun components that are allowed as children to this component.
 	*/
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gun Component")
 	TArray<FString> AllowedChildren;
 
 	/**
 	* A list of stats that this gun component contains.
 	*/
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gun Component")
 	TArray<FString> Stats;
 
 	/**
 	* The mesh component used to draw this gun component.
 	*/
-	UPROPERTY(BlueprintReadWrite, Category = Display)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gun Component")
 	class USkeletalMeshComponent* MeshComponent;
 	
 	/**
 	 * The category that the component belongs to.
 	 */
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gun Component")
 	EGunComponentType ComponentType;
 
 	/**
 	* The name of the gun component.
 	*/
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gun Component")
 	FString Name;
 
 	/**
 	 * The description of the gun component.
 	 */
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gun Component")
 	FString Description;
 
 	/**
 	* The name of the skeletal mesh socket that this component should be attached to.
 	*/
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gun Component")
 	FName AttachSocket;
 
+
+
+	/**
+	 * Creates a new gun component and initializes the components for the object.
+	 */
+	ANLHGunComponent(const FObjectInitializer& ObjectInitializer);
 
 
 	/**
@@ -157,7 +163,7 @@ public:
 		{
 			class ANLHGunComponent* child = *iter;
 
-			if (child->FindCapacity(outCapacity))
+			if (child->FindClipCapacity(outCapacity))
 				return true;
 		}
 
